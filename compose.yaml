@@ -1,9 +1,31 @@
 services:
   postgres:
-    image: 'postgres:latest'
+    container_name: postgres-sql-cmi
+    image: postgres
     environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      PGDATA: /var/lib/postgresql/data
+      POSTGRES_DB: count_me_in
+    volumes:
+      - postgres:/data/postgres
     ports:
-      - '5432'
+      - 5422:5432
+    networks:
+      - count-me-in
+    restart: unless-stopped
+
+  mail-dev:
+    container_name: mail-dev-cmi
+    image: maildev/maildev
+    ports:
+      - 1080:1080
+      - 1025:1025
+
+networks:
+  count-me-in:
+    driver: bridge
+
+volumes:
+  postgres:
+    driver: local
