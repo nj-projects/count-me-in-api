@@ -3,10 +3,9 @@ package me.nolanjames.countmeinapi.event;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,5 +17,10 @@ public class EventController {
     @PostMapping
     public ResponseEntity<EventResponse> createEvent(@Valid @RequestBody EventRequest request) {
         return ResponseEntity.ok(eventService.createEvent(request));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<EventResponse>> getEvents(){
+        return ResponseEntity.ok(eventService.getEvents());
     }
 }
