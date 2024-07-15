@@ -20,7 +20,8 @@ public class EventMapper {
         return new EventResponse(
                 newEvent.getName(),
                 newEvent.getDescription(),
-                newEvent.getDate().toString()
+                newEvent.getDate().toString(),
+                newEvent.getPublicId()
         );
     }
 }

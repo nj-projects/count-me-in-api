@@ -6,4 +6,6 @@ public interface EventService {
     EventResponse createEvent(EventRequest request);
 
     List<EventResponse> getEvents();
+
+    EventResponse getEvent(String eventId);
 }

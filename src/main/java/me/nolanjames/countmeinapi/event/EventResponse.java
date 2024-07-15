@@ -3,6 +3,7 @@ package me.nolanjames.countmeinapi.event;
 public record EventResponse(
         String name,
         String description,
-        String date
+        String date,
+        String publicId
 ) {
 }
