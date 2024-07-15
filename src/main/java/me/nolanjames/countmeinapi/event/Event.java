@@ -25,4 +25,6 @@ public class Event {
     private String description;
 
     private LocalDate date;
+
+    private String publicId;
 }

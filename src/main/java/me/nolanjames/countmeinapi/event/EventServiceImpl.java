@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -14,6 +16,7 @@ public class EventServiceImpl implements EventService {
     @Override
     public EventResponse createEvent(EventRequest request) {
         Event newEvent = eventMapper.toEvent(request);
+        newEvent.setPublicId(UUID.randomUUID().toString());
         eventRepository.save(newEvent);
 
         return eventMapper.toResponse(newEvent);
@@ -27,5 +30,12 @@ public class EventServiceImpl implements EventService {
                 .map(eventMapper::toResponse)
                 .toList();
 
+    }
+
+    @Override
+    public EventResponse getEvent(String eventId) {
+        Optional<Event> event = eventRepository.getEventByPublicId(eventId);
+
+        return event.map(eventMapper::toResponse).orElse(null);
     }
 }
