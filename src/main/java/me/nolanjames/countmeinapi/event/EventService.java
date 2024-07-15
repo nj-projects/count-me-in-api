@@ -10,4 +10,6 @@ public interface EventService {
     EventResponse getEvent(String eventId);
 
     EventResponse updateEvent(String eventId, EventRequest request);
+
+    void deleteEvent(String eventId);
 }

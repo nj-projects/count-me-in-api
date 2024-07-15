@@ -61,4 +61,10 @@ public class EventServiceImpl implements EventService {
         // Todo: update when add error handling
         return null;
     }
+
+    @Override
+    public void deleteEvent(String eventId) {
+        Optional<Event> event = eventRepository.getEventByPublicId(eventId);
+        event.ifPresent(eventRepository::delete);
+    }
 }
