@@ -35,4 +35,10 @@ public class EventController {
             @Valid @RequestBody EventRequest request) {
         return ResponseEntity.ok(eventService.updateEvent(eventId, request));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteEvent(@PathVariable("id") String eventId) {
+        eventService.deleteEvent(eventId);
+        return ResponseEntity.noContent().build();
+    }
 }
