@@ -1,8 +1,11 @@
 package me.nolanjames.countmeinapi.event;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -37,5 +40,25 @@ public class EventServiceImpl implements EventService {
         Optional<Event> event = eventRepository.getEventByPublicId(eventId);
 
         return event.map(eventMapper::toResponse).orElse(null);
+    }
+
+    @Override
+    @Transactional
+    public EventResponse updateEvent(String eventId, EventRequest request) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        Optional<Event> event = eventRepository.getEventByPublicId(eventId);
+        if (event.isPresent()) {
+            Event eventToUpdate = event.get();
+            eventToUpdate.setName(request.name());
+            eventToUpdate.setDescription(request.description());
+            eventToUpdate.setDate(LocalDate.parse(request.date(), formatter));
+
+            eventRepository.save(eventToUpdate);
+
+            return eventMapper.toResponse(eventToUpdate);
+        }
+        // Todo: update when add error handling
+        return null;
     }
 }

@@ -8,4 +8,6 @@ public interface EventService {
     List<EventResponse> getEvents();
 
     EventResponse getEvent(String eventId);
+
+    EventResponse updateEvent(String eventId, EventRequest request);
 }

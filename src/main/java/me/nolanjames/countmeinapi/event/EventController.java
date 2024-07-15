@@ -20,12 +20,19 @@ public class EventController {
     }
 
     @GetMapping
-    public ResponseEntity<List<EventResponse>> getEvents(){
+    public ResponseEntity<List<EventResponse>> getEvents() {
         return ResponseEntity.ok(eventService.getEvents());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EventResponse> getEvent(@PathVariable("id") String eventId){
+    public ResponseEntity<EventResponse> getEvent(@PathVariable("id") String eventId) {
         return ResponseEntity.ok(eventService.getEvent(eventId));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<EventResponse> updateEvent(
+            @PathVariable("id") String eventId,
+            @Valid @RequestBody EventRequest request) {
+        return ResponseEntity.ok(eventService.updateEvent(eventId, request));
     }
 }
