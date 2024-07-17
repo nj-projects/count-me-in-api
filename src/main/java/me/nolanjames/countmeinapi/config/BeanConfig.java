@@ -27,7 +27,8 @@ public class BeanConfig {
         ));
         configuration.setAllowedMethods(Arrays.asList(
                 "GET",
-                "POST"
+                "POST",
+                "PUT"
         ));
         source.registerCorsConfiguration("/**", configuration);
 
