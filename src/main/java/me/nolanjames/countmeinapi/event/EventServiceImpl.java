@@ -53,6 +53,7 @@ public class EventServiceImpl implements EventService {
             eventToUpdate.setName(request.name());
             eventToUpdate.setDescription(request.description());
             eventToUpdate.setDate(LocalDate.parse(request.date(), formatter));
+            eventToUpdate.setImageUrl(request.imageUrl());
 
             eventRepository.save(eventToUpdate);
 

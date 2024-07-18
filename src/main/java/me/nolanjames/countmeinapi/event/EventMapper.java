@@ -13,6 +13,7 @@ public class EventMapper {
                 .name(request.name())
                 .description(request.description())
                 .date(LocalDate.parse(request.date(), formatter))
+                .imageUrl(request.imageUrl())
                 .build();
     }
 
@@ -21,6 +22,7 @@ public class EventMapper {
                 newEvent.getName(),
                 newEvent.getDescription(),
                 newEvent.getDate().toString(),
+                newEvent.getImageUrl(),
                 newEvent.getPublicId()
         );
     }
