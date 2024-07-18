@@ -26,5 +26,7 @@ public class Event {
 
     private LocalDate date;
 
+    private String imageUrl;
+
     private String publicId;
 }
