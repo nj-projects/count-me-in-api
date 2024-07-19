@@ -1,10 +1,4 @@
-spring:
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: false
-    properties:
-      hibernate:
-        format_sql: true
-    database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+ACTIVE_PROFILE: dev
+DB_URL: jdbc:postgresql://localhost:5422/count_me_in
+DB_USER: username
+DB_PASS: password
