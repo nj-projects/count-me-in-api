@@ -18,7 +18,11 @@ public class BeanConfig {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "https://count-me-in-api.onrender.com"));
+        configuration.setAllowedOrigins(Arrays.asList(
+                "http://localhost:4200",
+                "https://count-me-in-api.onrender.com",
+                "https://count-it-down-project.netlify.app/"
+        ));
         configuration.setAllowedHeaders(Arrays.asList(
                 ORIGIN,
                 CONTENT_TYPE,
